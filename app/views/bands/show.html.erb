@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @band.name %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @band.area %>
+</p>
+
+<p>
+  <strong>Founded:</strong>
+  <%= @band.founded %>
+</p>
+
+<p>
+  <strong>Disbanded:</strong>
+  <%= @band.disbanded %>
+</p>
+
+<%= link_to 'Edit', edit_band_path(@band) %> |
+<%= link_to 'Back', bands_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  area: MyString
+  birth: 2020-02-17 16:57:18
+  death: 2020-02-17 16:57:18
+
+two:
+  name: MyString
+  area: MyString
+  birth: 2020-02-17 16:57:18
+  death: 2020-02-17 16:57:18
