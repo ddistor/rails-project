@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_action :set_song, only: %i[show edit update destroy]
 
   # GET /songs
   # GET /songs.json
@@ -10,6 +12,8 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+    @song = Song.includes(:album).find(params[:id])
+    # @album = Album.includes(:artist).find(params[:id])
   end
 
   # GET /songs/new
@@ -18,8 +22,7 @@ class SongsController < ApplicationController
   end
 
   # GET /songs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /songs
   # POST /songs.json
@@ -62,13 +65,14 @@ class SongsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_song
-      @song = Song.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def song_params
-      params.require(:song).permit(:title, :length, :position, :album_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_song
+    @song = Song.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def song_params
+    params.require(:song).permit(:title, :length, :position, :album_id)
+  end
 end
