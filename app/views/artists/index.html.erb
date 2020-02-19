@@ -1,33 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% if @artists.empty? %>
+<p> There are no artists in the database. </p>
+<% else %>
+  <h3>The artists that I really like are:</h3>
+  <ul>
+    <% @artists.each do |artist|%>
 
-<h1>Artists</h1>
+      <li><%= link_to artist.name, artist %></li>
+    <%end %>
+  </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Birth</th>
-      <th>Death</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% end %>
 
-  <tbody>
-    <% @artists.each do |artist| %>
-      <tr>
-        <td><%= artist.name %></td>
-        <td><%= artist.area %></td>
-        <td><%= artist.birth %></td>
-        <td><%= artist.death %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Artist', new_artist_path %>

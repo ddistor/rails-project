@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BandsController < ApplicationController
-  before_action :set_band, only: [:show, :edit, :update, :destroy]
+  before_action :set_band, only: %i[show edit update destroy]
 
   # GET /bands
   # GET /bands.json
@@ -10,6 +12,7 @@ class BandsController < ApplicationController
   # GET /bands/1
   # GET /bands/1.json
   def show
+    @band = Band.includes(:albums).find(params[:id])
   end
 
   # GET /bands/new
@@ -18,8 +21,7 @@ class BandsController < ApplicationController
   end
 
   # GET /bands/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bands
   # POST /bands.json
@@ -62,13 +64,14 @@ class BandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_band
-      @band = Band.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def band_params
-      params.require(:band).permit(:name, :area, :founded, :disbanded)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_band
+    @band = Band.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def band_params
+    params.require(:band).permit(:name, :area, :founded, :disbanded)
+  end
 end

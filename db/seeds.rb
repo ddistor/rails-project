@@ -61,7 +61,7 @@ bands.each do |band_name|
   disbanded = band.search('life-span/end').text
 
   band_create = Band.create(name: name, area: area, founded: founded, disbanded: disbanded)
-
+  puts band_create
   albums = Dir.entries("app/data/band/#{band_name}/album/")
   albums.each do |album_name|
     next unless album_name.include? 'xml'
@@ -81,14 +81,6 @@ bands.each do |band_name|
       album_create.songs.create(title: title, length: length, position: position)
     end
   end
-end
-album = Nokogiri::XML(open('app/data/band/GratefulDead/album/americanbeauty.xml'))
-length = album.search('track/length')
-songs_list = album.search('recording/title')
-songs_list.each.with_index(1) do |_song, index|
-  lengths = length[index - 1].to_s.gsub('<length>', '').gsub('</length>', '').to_i
-  puts lengths
-  puts lengths.class
 end
 
 # bands

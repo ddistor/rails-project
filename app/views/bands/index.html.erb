@@ -1,33 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% if @bands.empty? %>
+<p> There are no bands in the database. </p>
+<% else %>
+  <h3>The bands that I really like are:</h3>
+  <ul>
+    <% @bands.each do |band|%>
 
-<h1>Bands</h1>
+      <li><%= link_to band.name, band %></li>
+    <%end %>
+  </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Founded</th>
-      <th>Disbanded</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% end %>
 
-  <tbody>
-    <% @bands.each do |band| %>
-      <tr>
-        <td><%= band.name %></td>
-        <td><%= band.area %></td>
-        <td><%= band.founded %></td>
-        <td><%= band.disbanded %></td>
-        <td><%= link_to 'Show', band %></td>
-        <td><%= link_to 'Edit', edit_band_path(band) %></td>
-        <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Band', new_band_path %>
