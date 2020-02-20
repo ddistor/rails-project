@@ -2,7 +2,7 @@
 <p> There are no albums in the database. </p>
 <% else %>
   <h3 class="title">The songs that I really like are:</h3>
-  <ul>
+
     <% @songs.each do |song|%>
       <div class="columns">
   <div class="column is-one-quarter">
@@ -15,6 +15,6 @@
   </div>
 </div>
     <%end %>
-  </ul>
+
 <% end %>
 <%= paginate @songs%>
