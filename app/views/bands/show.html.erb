@@ -1,14 +1,25 @@
-<h1><%=@band.name%></h1>
-<h4>About</h4>
-<p><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
+<h1 class="title is-1"><%=@band.name%></h1>
+<h4 class="title is-2">About</h4>
+<p class="subtitle is-3"><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
+<p class="subtitle is-4">Some of their albums is/are:</p>
 <ul>
-  <% @band.albums.each do |album| %>
-    <img src=<%= album.image%> />
-    <li><%= album.name %></li>
-    <ul>
-      <% album.songs.each do |song|%>
-        <li><%= song.title %></li>
-      <% end%>
-    </ul>
-  <% end %>
+<div class="box">
+  <div class="columns is-multiline">
+    <% @band.albums.each do |album| %>
+      <div class="column is-one-thirds">
+        <li>
+          <%= album.name %>
+        </li>
+        <img src=<%= album.image%> />
+        <li>
+          <ul>
+            <% album.songs.each do |song|%>
+              <li><%= song.title %></li>
+            <% end%>
+          </ul>
+        </li>
+      </div>
+    <% end %>
+  </div>
+</div>
 </ul>

@@ -1,4 +1,14 @@
-<img src=<%= @song.album.image %>>
-<h1><%= @song.title %></h1>
-<p><%= @song.title %> is a song by <%= !@song.album.artist.nil? ? @song.album.artist.name : @song.album.band.name%> from the album <%= @song.album.name %></p>
-<p><%=@song.info%></p>
+<div class="columns">
+  <div class="column is-one-quarter">
+    <img src=<%= @song.album.image %>>
+  </div>
+  <div class="column">
+    <h1 class="title is-1"><%= @song.title %></h1>
+    <p class="subtitle is-3"><%= @song.title %> is a song by <%= !@song.album.artist.nil? ? (link_to @song.album.artist.name, @song.album.artist) : (link_to @song.album.band.name, @song.album.band)%> from the album <%= link_to @song.album.name, @song.album %></p>
+    <p class="subtitle is-4"><%=@song.info%></p>
+  </div>
+</div>
+
+
+
+

@@ -1,14 +1,20 @@
 <% if @songs.empty? %>
 <p> There are no albums in the database. </p>
 <% else %>
-  <h3>The songs that I really like are:</h3>
+  <h3 class="title">The songs that I really like are:</h3>
   <ul>
     <% @songs.each do |song|%>
-      <li>
-        <%= link_to song.title, song %>
-        (<%= song.album.name %> by
-        <%= !song.album.artist.nil? ? song.album.artist.name : song.album.band.name  %>)
-      </li>
+      <div class="columns">
+  <div class="column is-one-quarter">
+    <img src=<%= song.album.image %>>
+  </div>
+  <div class="column">
+    <h1 class="title is-1"><%= link_to song.title, song %></h1>
+    <p class="subtitle is-3"><%= song.title %> is a song by <%= !song.album.artist.nil? ? (link_to song.album.artist.name, song.album.artist) : (link_to song.album.band.name, song.album.band)%> from the album <%= link_to song.album.name, song.album %></p>
+    <p class="subtitle is-4"><%=song.info%></p>
+  </div>
+</div>
     <%end %>
   </ul>
 <% end %>
+<%= paginate @songs%>

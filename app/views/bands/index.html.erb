@@ -1,10 +1,14 @@
 <% if @bands.empty? %>
 <p> There are no bands in the database. </p>
 <% else %>
-  <h3>The bands that I really like are:</h3>
+  <h3 class="title is-1">The bands that I really like are:</h3>
   <ul>
     <% @bands.each do |band|%>
-      <li><%= link_to band.name, band %></li>
+      <li>
+        <p class="subtitle is-1">
+          <%= link_to band.name, band %>
+        </p>
+      </li>
     <%end %>
   </ul>
 

@@ -1,11 +1,14 @@
 <% if @artists.empty? %>
 <p> There are no artists in the database. </p>
 <% else %>
-  <h3>The artists that I really like are:</h3>
+  <h3 class="title is-1">The artists that I really like are:</h3>
   <ul>
     <% @artists.each do |artist|%>
-
-      <li><%= link_to artist.name, artist %></li>
+      <li>
+        <p class="subtitle is-1">
+          <%= link_to artist.name, artist %>
+        </p>
+      </li>
     <%end %>
   </ul>
 

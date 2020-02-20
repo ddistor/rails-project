@@ -1,15 +1,32 @@
-<h1><%=@artist.name%></h1>
-<h4>About</h4>
-<p><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
-<p>Some of his/her albums is/are:</p>
+<h1 class="title is-1"><%=@artist.name%></h1>
+<h4 class="title is-2">About</h4>
+<p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
+<p class="subtitle is-4">Some of his/her albums is/are:</p>
+
+
 <ul>
+<div class="box">
+  <div class="columns is-multiline">
   <% @artist.albums.each do |album| %>
-    <li><%= album.name %></li>
-    <img src=<%= album.image%> />
-    <ul>
-      <% album.songs.each do |song|%>
-        <li><%= song.title %></li>
-      <% end%>
-    </ul>
+    <div class="column is-one-thirds">
+      <li>
+          <p>
+            <%= album.name %>
+          </p>
+      </li>
+      <img src=<%= album.image%> />
+      <li>
+        <ul>
+          <% album.songs.each do |song|%>
+            <li><%= song.title %></li>
+          <% end%>
+        </ul>
+      </li>
+    </div>
   <% end %>
+  </div>
+</div>
 </ul>
+
+
+

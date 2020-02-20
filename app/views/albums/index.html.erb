@@ -1,14 +1,23 @@
 <% if @albums.empty? %>
 <p> There are no albums in the database. </p>
 <% else %>
-  <h3>The albums that I really like are:</h3>
+  <h3 class="title is-1">The albums that I really like are:</h3>
+
+
   <ul>
+  <div class="box">
+    <div class="columns is-multiline">
     <% @albums.each do |album|%>
+    <div class="column is-one-third">
       <li>
         <%= link_to album.name, album %></br>
         <img src=<%=album.image%> >
       </li>
+    </div>
     <%end %>
+  </div>
+  </div>
   </ul>
+
 
 <% end %>

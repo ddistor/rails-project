@@ -8,23 +8,28 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
   </head>
   <body>
-    <header>
-      <h1>Denzhel's Current Music Favorites</h1>
-        <p>
-          <%= link_to 'Home', root_path %> |
-          <%= link_to 'Artists', artists_path %> |
-          <%= link_to 'Bands', bands_path %> |
-          <%= link_to 'Albums', albums_path %> |
-        </p>
-    </header>
-      <%= render partial: 'songs/search'%>
-    <%= yield %>
-    <footer>
-      Copyright Dricstor 2020.
-    </footer>
+    <section class="section">
+      <div class="container is-center">
+        <header>
+          <h1 class="title is-1">Denzhel's Current Music Favorites</h1>
+            <p>
+              <%= link_to 'Home', root_path %> |
+              <%= link_to 'Artists', artists_path %> |
+              <%= link_to 'Bands', bands_path %> |
+              <%= link_to 'Albums', albums_path %> |
+            </p>
+        </header>
+          <%= render partial: 'songs/search'%>
+        <%= yield %>
+        <footer>
+          Copyright Dricstor 2020.
+        </footer>
+      </div>
+    </section>
+
   </body>
 </html>
