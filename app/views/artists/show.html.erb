@@ -4,29 +4,30 @@
 <p class="subtitle is-4">Some of his/her albums is/are:</p>
 
 
-<ul>
 <div class="box">
-  <div class="columns is-multiline">
+  <ul class="columns is-multiline">
   <% @artist.albums.each do |album| %>
-    <div class="column is-one-thirds">
-      <li>
+    <li class="column is-full">
+      <li >
           <p>
-            <%= album.name %>
+            <%= link_to album.name, album %>
           </p>
+          <img src=<%= album.image%> />
       </li>
-      <img src=<%= album.image%> />
-      <li>
+
+      <li class="column is-half">
         <ul>
           <% album.songs.each do |song|%>
-            <li><%= song.title %></li>
+            <li><%=link_to song.title, song %></li>
           <% end%>
         </ul>
       </li>
-    </div>
+    </li>
   <% end %>
+  </ul>
   </div>
-</div>
-</ul>
+
+
 
 
 
