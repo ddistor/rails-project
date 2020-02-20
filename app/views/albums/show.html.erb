@@ -6,7 +6,7 @@
 
   <div class="column">
     <h1 class="title is-1"><%= @album.name %></h1>
-    <p class="subtitle is-3">Album by <%= @album.artist.name %> released in <%= @album.release_date %> through <%= @album.label %> </p>
+    <p class="subtitle is-3">Album by <%= @album.artist.name %> released in <%= @album.release_date.strftime("%B %d, %Y") %> through <%= @album.label %> </p>
     <p class="subtitle is-4"><%=@album.info%></p>
   </div>
 </div>
