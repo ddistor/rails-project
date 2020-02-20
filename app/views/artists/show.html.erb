@@ -1,3 +1,6 @@
+<h1><%=@artist.name%></h1>
+<h4>About</h4>
+<p><%=@artist.name%> is an artist born in </p>
 <ul>
   <% @artist.albums.each do |album| %>
     <li><%= album.name %></li>

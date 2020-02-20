@@ -10,12 +10,16 @@
 
 require 'nokogiri'
 require 'open-uri'
+require 'faker'
+require 'rspotify'
 
 Song.destroy_all
 Album.destroy_all
 Artist.destroy_all
 Band.destroy_all
-# puts Dir.exist?('app/data/JohnMayer')
+
+RSpotify.authenticate('334ab5e027bf4e049238a579f973c09e', '07b909469d4644a68442ef92580716ea')
+
 artists = Dir.entries('app/data/artist')
 # artists
 artists.each do |artist_name|
@@ -23,29 +27,35 @@ artists.each do |artist_name|
 
   artist = Nokogiri::XML(open("app/data/artist/#{artist_name}/#{artist_name}.xml"))
   name = artist.search('artist/name').text
+  info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
   area = artist.search('area/name').text
   birth = artist.search('life-span/begin').text
   death = artist.search('life-span/end').text
 
-  artist_create = Artist.create(name: name, area: area, birth: birth, death: death)
+  artist_create = Artist.create(name: name, area: area, info: info, birth: birth, death: death)
 
   albums = Dir.entries("app/data/artist/#{artist_name}/album/")
   albums.each do |album_name|
     next unless album_name.include? 'xml'
 
+    spotify = RSpotify::Album.search(artist_name.gsub('.xml', ''))
+    image_link = spotify.first.images
     album = Nokogiri::XML(open("app/data/artist/#{artist_name}/album/#{album_name}"))
     name = album.search('release/title').text
     label = album.search('label/name').text
+    info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+    image = image_link[0]['url']
     release_date = album.search('release/date').text
 
-    album_create = artist_create.albums.create(name: name, label: label, release_date: release_date)
+    album_create = artist_create.albums.create(name: name, label: label, info: info, image: image, release_date: release_date)
     song_length = album.search('track/length')
     songs_list = album.search('recording/title')
     songs_list.each.with_index(1) do |song, index|
       title = song.to_s.gsub('<title>', '').gsub('</title>', '')
+      info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
       length = song_length[index - 1].to_s.gsub('<length>', '').to_i
       position = index
-      album_create.songs.create(title: title, length: length, position: position)
+      album_create.songs.create(title: title, info: info, length: length, position: position)
     end
   end
 end
@@ -57,28 +67,35 @@ bands.each do |band_name|
   band = Nokogiri::XML(open("app/data/band/#{band_name}/#{band_name}.xml"))
   name = band.search('artist/name').text
   area = band.search('area/name').text
+  info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
   founded = band.search('life-span/begin').text
   disbanded = band.search('life-span/end').text
 
-  band_create = Band.create(name: name, area: area, founded: founded, disbanded: disbanded)
+  band_create = Band.create(name: name, area: area, info: info, founded: founded, disbanded: disbanded)
   puts band_create
   albums = Dir.entries("app/data/band/#{band_name}/album/")
   albums.each do |album_name|
     next unless album_name.include? 'xml'
 
+    spotify = RSpotify::Album.search(band_name.gsub('.xml', ''))
+    image_link = spotify.first.images
+
     album = Nokogiri::XML(open("app/data/band/#{band_name}/album/#{album_name}"))
     name = album.search('release/title').text
     label = album.search('label/name').text
+    info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+    image = image_link[0]['url']
     release_date = album.search('release/date').text
 
-    album_create = band_create.albums.create(name: name, label: label, release_date: release_date)
+    album_create = band_create.albums.create(name: name, label: label, info: info, image: image, release_date: release_date)
     song_length = album.search('track/length')
     songs_list = album.search('recording/title')
     songs_list.each.with_index(1) do |song, index|
       title = song.to_s.gsub('<title>', '').gsub('</title>', '')
+      info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
       length = song_length[index - 1].to_s.gsub('<length>', '').gsub('</length>', '').to_i
       position = index
-      album_create.songs.create(title: title, length: length, position: position)
+      album_create.songs.create(title: title, info: info, length: length, position: position)
     end
   end
 end

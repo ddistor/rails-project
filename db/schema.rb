@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 2020_02_17_232327) do
   create_table "albums", force: :cascade do |t|
     t.string "name"
     t.string "label"
+    t.string "info"
+    t.string "image"
     t.datetime "release_date"
     t.integer "band_id"
     t.integer "artist_id"
@@ -27,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_232327) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "area"
+    t.string "info"
     t.datetime "birth"
     t.datetime "death"
     t.datetime "created_at", precision: 6, null: false
@@ -36,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_232327) do
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.string "area"
+    t.string "info"
     t.datetime "founded"
     t.datetime "disbanded"
     t.datetime "created_at", precision: 6, null: false
@@ -44,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_232327) do
 
   create_table "songs", force: :cascade do |t|
     t.string "title"
+    t.string "info"
     t.integer "length"
     t.integer "position"
     t.integer "album_id", null: false
