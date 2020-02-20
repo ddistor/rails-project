@@ -4,8 +4,10 @@
   <h3>The albums that I really like are:</h3>
   <ul>
     <% @albums.each do |album|%>
-
-      <li><%= link_to album.name, album %></li>
+      <li>
+        <%= link_to album.name, album %></br>
+        <img src=<%=album.image%> >
+      </li>
     <%end %>
   </ul>
 

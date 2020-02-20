@@ -1,0 +1,16 @@
+<p>
+  Found <%= pluralize(@songs.size, 'result')%>
+  for the search "<%= params[:search_term]%>".
+</p>
+
+<ul>
+    <% @songs.each do |song|%>
+      <li>
+        <%= link_to song.title, song %>
+        (<%= song.album.name %> by
+        <%= !song.album.artist.nil? ? song.album.artist.name : song.album.band.name  %>)
+      </li>
+    <%end %>
+  </ul>
+
+

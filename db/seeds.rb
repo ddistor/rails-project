@@ -27,7 +27,7 @@ artists.each do |artist_name|
 
   artist = Nokogiri::XML(open("app/data/artist/#{artist_name}/#{artist_name}.xml"))
   name = artist.search('artist/name').text
-  info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+  info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
   area = artist.search('area/name').text
   birth = artist.search('life-span/begin').text
   death = artist.search('life-span/end').text
@@ -38,13 +38,13 @@ artists.each do |artist_name|
   albums.each do |album_name|
     next unless album_name.include? 'xml'
 
-    spotify = RSpotify::Album.search(artist_name.gsub('.xml', ''))
+    spotify = RSpotify::Album.search(album_name.gsub('.xml', ''))
     image_link = spotify.first.images
     album = Nokogiri::XML(open("app/data/artist/#{artist_name}/album/#{album_name}"))
     name = album.search('release/title').text
     label = album.search('label/name').text
-    info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
-    image = image_link[0]['url']
+    info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
+    image = image_link[1]['url']
     release_date = album.search('release/date').text
 
     album_create = artist_create.albums.create(name: name, label: label, info: info, image: image, release_date: release_date)
@@ -52,7 +52,7 @@ artists.each do |artist_name|
     songs_list = album.search('recording/title')
     songs_list.each.with_index(1) do |song, index|
       title = song.to_s.gsub('<title>', '').gsub('</title>', '')
-      info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+      info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
       length = song_length[index - 1].to_s.gsub('<length>', '').to_i
       position = index
       album_create.songs.create(title: title, info: info, length: length, position: position)
@@ -67,7 +67,7 @@ bands.each do |band_name|
   band = Nokogiri::XML(open("app/data/band/#{band_name}/#{band_name}.xml"))
   name = band.search('artist/name').text
   area = band.search('area/name').text
-  info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+  info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
   founded = band.search('life-span/begin').text
   disbanded = band.search('life-span/end').text
 
@@ -77,14 +77,14 @@ bands.each do |band_name|
   albums.each do |album_name|
     next unless album_name.include? 'xml'
 
-    spotify = RSpotify::Album.search(band_name.gsub('.xml', ''))
+    spotify = RSpotify::Album.search(album_name.gsub('.xml', ''))
     image_link = spotify.first.images
 
     album = Nokogiri::XML(open("app/data/band/#{band_name}/album/#{album_name}"))
     name = album.search('release/title').text
     label = album.search('label/name').text
-    info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
-    image = image_link[0]['url']
+    info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
+    image = image_link[1]['url']
     release_date = album.search('release/date').text
 
     album_create = band_create.albums.create(name: name, label: label, info: info, image: image, release_date: release_date)
@@ -92,7 +92,7 @@ bands.each do |band_name|
     songs_list = album.search('recording/title')
     songs_list.each.with_index(1) do |song, index|
       title = song.to_s.gsub('<title>', '').gsub('</title>', '')
-      info = Faker::Lorem.paragraph(sentence_count: 5, supplemental: true)
+      info = Faker::Lorem.paragraph(sentence_count: 15, supplemental: true)
       length = song_length[index - 1].to_s.gsub('<length>', '').gsub('</length>', '').to_i
       position = index
       album_create.songs.create(title: title, info: info, length: length, position: position)

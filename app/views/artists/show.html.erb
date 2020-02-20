@@ -1,9 +1,11 @@
 <h1><%=@artist.name%></h1>
 <h4>About</h4>
-<p><%=@artist.name%> is an artist born in </p>
+<p><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
+<p>Some of his/her albums is/are:</p>
 <ul>
   <% @artist.albums.each do |album| %>
     <li><%= album.name %></li>
+    <img src=<%= album.image%> />
     <ul>
       <% album.songs.each do |song|%>
         <li><%= song.title %></li>

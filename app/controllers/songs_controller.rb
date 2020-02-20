@@ -3,6 +3,10 @@
 class SongsController < ApplicationController
   before_action :set_song, only: %i[show edit update destroy]
 
+  def search
+    @songs = Song.where('title LIKE ?', "%#{params[:search_term]}%")
+  end
+
   # GET /songs
   # GET /songs.json
   def index

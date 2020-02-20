@@ -1,24 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @song.title %>
-</p>
-
-<p>
-  <strong>Length:</strong>
-  <%= @song.length %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @song.position %>
-</p>
-
-<p>
-  <strong>Album:</strong>
-  <%= @song.album_id %>
-</p>
-
-<%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+<img src=<%= @song.album.image %>>
+<h1><%= @song.title %></h1>
+<p><%= @song.title %> is a song by <%= !@song.album.artist.nil? ? @song.album.artist.name : @song.album.band.name%> from the album <%= @song.album.name %></p>
+<p><%=@song.info%></p>

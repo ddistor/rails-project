@@ -1,5 +1,9 @@
+<h1><%=@band.name%></h1>
+<h4>About</h4>
+<p><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
 <ul>
   <% @band.albums.each do |album| %>
+    <img src=<%= album.image%> />
     <li><%= album.name %></li>
     <ul>
       <% album.songs.each do |song|%>
