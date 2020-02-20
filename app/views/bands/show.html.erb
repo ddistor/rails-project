@@ -2,24 +2,25 @@
 <h4 class="title is-2">About</h4>
 <p class="subtitle is-3"><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
 <p class="subtitle is-4">Some of their albums is/are:</p>
-<ul>
+
 <div class="box">
-  <div class="columns is-multiline">
+  <ul class="columns is-multiline">
     <% @band.albums.each do |album| %>
-      <div class="column is-one-thirds">
+      <li class="column is-full">
         <li>
-          <%= album.name %>
+          <p>
+          <%= link_to album.name, album %>
+          </p>
+          <img src=<%= album.image%> />
         </li>
-        <img src=<%= album.image%> />
-        <li>
+
+        <li class="column is-half">
           <ul>
             <% album.songs.each do |song|%>
-              <li><%= song.title %></li>
+              <li><%= link_to song.title, song %></li>
             <% end%>
           </ul>
         </li>
-      </div>
     <% end %>
-  </div>
+  </ul>
 </div>
-</ul>

@@ -3,7 +3,6 @@
 <p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
 <p class="subtitle is-4">Some of his/her albums is/are:</p>
 
-
 <div class="box">
   <ul class="columns is-multiline">
   <% @artist.albums.each do |album| %>
@@ -21,7 +20,6 @@
             <li><%=link_to song.title, song %></li>
           <% end%>
         </ul>
-      </li>
     </li>
   <% end %>
   </ul>
