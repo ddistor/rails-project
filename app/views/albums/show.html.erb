@@ -1,10 +1,25 @@
 
-<img src=<%=@album.image%>>
-<h1><%= @album.name %></h1>
-<p>Album by <%= @album.artist.name %> released in <%= @album.release_date %> through <%= @album.label %> </p>
-<p><%=@album.info%></p>
-<ul>
+<div class="columns">
+  <div class="column is-one-quarter">
+    <img src=<%=@album.image%>>
+  </div>
+
+  <div class="column">
+    <h1 class="title is-1"><%= @album.name %></h1>
+    <p class="subtitle is-3">Album by <%= @album.artist.name %> released in <%= @album.release_date %> through <%= @album.label %> </p>
+    <p class="subtitle is-4"><%=@album.info%></p>
+  </div>
+</div>
+
+
+
+<ul class="columns is-multiline">
   <% @album.songs.each do |song|%>
-    <li><%= song.title %></li>
+    <li class="column is-half">
+        <h1 class="title is-1"><%= song.position %>. <%= link_to song.title, song %></h1>
+        <p class="subtitle is-3"><%= song.title %> is a song by <%= !song.album.artist.nil? ? (link_to song.album.artist.name, song.album.artist) : (link_to song.album.band.name, song.album.band)%> from the album <%= link_to song.album.name, song.album %></p>
+        <p class="subtitle is-4"><%= song.info%></p>
+    </li>
+
   <% end%>
 </ul>
