@@ -1,2 +1,8 @@
 <h1>About</h1>
-<img>
+<%=image_tag("erd")%>
+<p>
+  My website is going to be bands/artists and their albums and songs. What I’m planning to do is get the xml files off the artist and album datasets of multiple artists from a website called “MusicBrainz” (https://musicbrainz.org/). I’m going to have the bands and artists be many to many. Bands can have many artists and artists can be in any band. Each band or artists must have an album and, in that album, it should have songs.
+  I also used the Spotify API to get album covers and faker to make a few paragraphs to make the pages look fuller.
+</p>
+
+ <%= Dir.entries('./app/data/images') %>
