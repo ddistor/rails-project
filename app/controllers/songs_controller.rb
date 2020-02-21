@@ -11,7 +11,7 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     # @songs = Song.all
-    @songs = Song.page(params[:page])
+    @songs = Song.order('title ASC').page(params[:page]).per(10)
   end
 
   # GET /songs/1

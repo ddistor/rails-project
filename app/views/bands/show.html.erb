@@ -1,20 +1,40 @@
+<div class="box">
 <h1 class="title is-1"><%=@band.name%></h1>
 <h4 class="title is-2">About</h4>
 <p class="subtitle is-3"><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
-<p class="subtitle is-4">Some of their albums is/are:</p>
+<h4 class="subtitle is-3"><%=@band.info%></h4>
+</div>
+<% if !@band.artists.empty? %>
+  <div class="box">
+    <h1 class="title is-2"><%=@band.name %>'s band(s) that are in the database are:</h1>
+    <ul class="columns">
+      <%@band.artists.each do |artist| %>
+      <li class="column is-half">
+        <p class="title is-4">
+          <%= artist.name%>
+        </p>
+        <p class="subtitle is-5">
+          <%= artist.info%>
+        </p>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+<% end%>
 
 <div class="box">
-  <ul class="columns is-multiline">
+<h1 class="subtitle is-3">Some of their albums is/are:</h1>
+  <ul class="columns is-multiline is-centered">
     <% @band.albums.each do |album| %>
       <li class="column is-full">
-        <li>
+        <li class="column is-one-third">
           <p>
           <%= link_to album.name, album %>
           </p>
           <img src=<%= album.image%> />
         </li>
 
-        <li class="column is-half">
+        <li class="column is-one-third">
           <ul>
             <% album.songs.each do |song|%>
               <li><%= link_to song.title, song %></li>
