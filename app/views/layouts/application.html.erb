@@ -15,14 +15,39 @@
     <section class="section">
       <div class="container is-center">
         <header>
-          <h1 class="title is-1">Denzhel's Current Music Favorites</h1>
-            <p>
-              <%= link_to 'Home', root_path %> |
-              <%= link_to 'Artists', artists_path %> |
-              <%= link_to 'Bands', bands_path %> |
-              <%= link_to 'Albums', albums_path %> |
-              <%= link_to 'About', about_path %>
-            </p>
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href=<%=root_path%>>
+                <%= image_tag('logo.PNG')%>
+              </a>
+
+              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a class="navbar-item" href=<%=root_path%>>
+                  Home
+                </a>
+                <a class="navbar-item" href=<%=artists_path%>>
+                  Artists
+                </a>
+                <a class="navbar-item" href=<%=bands_path%>>
+                  Bands
+                </a>
+                <a class="navbar-item" href=<%=albums_path%>>
+                  Albums
+                </a>
+                <a class="navbar-item" href=<%=about_path%>>
+                  About
+                </a>
+            </div>
+            </div>
+          </nav>
         </header>
           <%= render partial: 'songs/search'%>
         <%= yield %>
