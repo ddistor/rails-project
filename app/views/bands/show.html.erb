@@ -2,7 +2,11 @@
   <h1 class="title is-1"><%=@band.name%></h1>
   <div class="box">
   <h4 class="title is-2">About</h4>
-  <p class="subtitle is-3"><%=@band.name%> is band created in <%=@artist.founded.strftime("%B %d, %Y") if !@band.founded.nil?%> (<%=@band.area%>)</p>
+  <% if @band.disbanded.empty? %>
+    <p class="subtitle is-3"><%=@band.name%> is a band founded in <%= @band.founded %> (<%=@band.area%>)</p>
+  <% else %>
+    <p class="subtitle is-3"><%=@band.name%> was a band founded in <%= @band.founded %> (<%=@band.area%>), disbanded in <%=@band.disbanded%> </p>
+  <% end %>
   <h4 class="subtitle is-3"><%=@band.info%></h4>
   </div>
   <% if !@band.artists.empty? %>

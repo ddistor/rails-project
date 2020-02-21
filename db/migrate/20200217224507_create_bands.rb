@@ -6,8 +6,8 @@ class CreateBands < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :area
       t.string :info
-      t.datetime :founded
-      t.datetime :disbanded
+      t.string :founded
+      t.string :disbanded
 
       t.timestamps
     end

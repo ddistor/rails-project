@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_02_20_234844) do
     t.string "name"
     t.string "area"
     t.string "info"
-    t.datetime "founded"
-    t.datetime "disbanded"
+    t.string "founded"
+    t.string "disbanded"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
