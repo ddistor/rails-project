@@ -7,7 +7,11 @@
 
   <div class="column">
     <h1 class="title is-1"><%= @album.name %></h1>
-    <p class="subtitle is-3">Album by <%= !@album.artist.nil? ? (link_to @album.artist.name, @album.artist) : (link_to @album.band.name, @album.band)%> released in <%= @album.release_date.strftime("%B %d, %Y") %> through <%= @album.label %> </p>
+    <% if !@album.release_date.nil?%>
+      <p class="subtitle is-3">Album by <%= !@album.artist.nil? ? (link_to @album.artist.name, @album.artist) : (link_to @album.band.name, @album.band)%> released in <%= @album.release_date.strftime("%B %d, %Y") %> through <%= @album.label %> </p>
+    <% else%>
+      <p class="subtitle is-3">Album by <%= !@album.artist.nil? ? (link_to @album.artist.name, @album.artist) : (link_to @album.band.name, @album.band)%> released through <%= @album.label %> </p>
+    <% end %>
     <p class="subtitle is-4"><%=@album.info%></p>
   </div>
 </div>
