@@ -1,16 +1,23 @@
 <% if @bands.empty? %>
 <p> There are no bands in the database. </p>
 <% else %>
-  <h3 class="title is-1">The bands that I really like are:</h3>
-  <ul>
-    <% @bands.each do |band|%>
-      <li>
-        <p class="subtitle is-1">
-          <%= link_to band.name, band %>
-        </p>
-      </li>
-    <%end %>
-  </ul>
+
+  <div class="box">
+    <h3 class="title is-1">The bands that I really like are:</h3>
+    <ul>
+      <% @bands.each do |band|%>
+        <li class="box">
+          <p class="subtitle is-1">
+            <%= link_to band.name, band %>
+          </p>
+          <p class="subtitle is-3">
+            <%= band.info%>
+          </p>
+        </li>
+      <%end %>
+    </ul>
+  </div>
+
 
 <% end %>
 
