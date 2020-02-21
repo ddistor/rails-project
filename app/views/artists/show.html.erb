@@ -2,7 +2,11 @@
   <h1 class="title is-1"><%=@artist.name%></h1>
   <div class="box">
     <h4 class="title is-2">About</h4>
-    <p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
+    <%if @artist.death.blank? %>
+      <p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
+    <% else %>
+      <p class="subtitle is-3"><%=@artist.name%> was an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>), passed away in <%=@artist.death.strftime("%B %d, %Y") if !@artist.death.nil?%></p>
+    <% end %>
     <h4 class="subtitle is-3"><%=@artist.info%></h4>
   </div>
 
