@@ -7,7 +7,7 @@
     <% @songs.each do |song|%>
       <div class="columns">
         <div class="column is-one-quarter">
-          <img src=<%= song.album.image %>>
+          <%= link_to image_tag(song.album.image, :alt => song.album.name), song.album %>
         </div>
         <div class="column">
           <h1 class="title is-1"><%= link_to song.title, song %></h1>
