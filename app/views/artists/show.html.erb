@@ -1,29 +1,51 @@
 <h1 class="title is-1"><%=@artist.name%></h1>
-<h4 class="title is-2">About</h4>
-<p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
-<p class="subtitle is-4">Some of his/her albums is/are:</p>
+<div class="box">
+  <h4 class="title is-2">About</h4>
+  <p class="subtitle is-3"><%=@artist.name%> is an artist born in <%=@artist.birth.strftime("%B %d, %Y") if !@artist.birth.nil?%> (<%=@artist.area%>)</p>
+  <h4 class="subtitle is-3"><%=@artist.info%></h4>
+</div>
+
+<% if !@artist.bands.empty? %>
+  <div class="box">
+    <h1 class="title is-2"><%=@artist.name %>'s band(s) that are in the database are:</h1>
+    <ul class="columns">
+      <%@artist.bands.each do |band| %>
+      <li class="column is-half">
+        <p class="title is-4">
+          <%= band.name%>
+        </p>
+        <p class="subtitle is-5">
+          <%= band.info%>
+        </p>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+<% end%>
+
 
 <div class="box">
-  <ul class="columns is-multiline">
+  <h1 class="title is-3">Some of his/her albums is/are:</h1>
+  <ul class="columns is-multiline is-centered">
   <% @artist.albums.each do |album| %>
     <li class="column is-full">
-      <li >
+      <li class="column is-one-third" >
           <p>
             <%= link_to album.name, album %>
           </p>
           <img src=<%= album.image%> />
       </li>
 
-      <li class="column is-half">
+      <li class="column is-one-third">
         <ul>
           <% album.songs.each do |song|%>
-            <li><%=link_to song.title, song %></li>
+            <li><p class="subtitle is-5"><%=link_to song.title, song %></p></li>
           <% end%>
         </ul>
-    </li>
-  <% end %>
+      </li>
+    <% end %>
   </ul>
-  </div>
+</div>
 
 
 
